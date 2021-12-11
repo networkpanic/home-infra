@@ -1,0 +1,26 @@
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Receiver
+metadata:
+  name: k3s-at-home
+  namespace: flux-system
+spec:
+  type: github
+  events:
+  - "ping"
+  - "push"
+  secretRef:
+    name: github-webhook-token
+  resources:
+    - apiVersion: source.toolkit.fluxcd.io/v1beta1
+      kind: GitRepository
+      name: flux-system
+    - apiVersion: source.toolkit.fluxcd.io/v1beta1
+      kind: Kustomization
+      name: apps
+    - apiVersion: source.toolkit.fluxcd.io/v1beta1
+      kind: Kustomization
+      name: core
+    - apiVersion: source.toolkit.fluxcd.io/v1beta1
+      kind: Kustomization
+      name: crds
