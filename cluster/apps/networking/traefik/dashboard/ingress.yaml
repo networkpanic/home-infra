@@ -11,8 +11,10 @@ metadata:
     hajimari.io/icon: "web"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     external-dns.alpha.kubernetes.io/target: "int.${SECRET_DOMAIN}"
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+    external-dns.alpha.kubernetes.io/is-public: "true"
 spec:
-  ingressClassName: "traefik-internal"
+  ingressClassName: "internal"
   tls:
     - hosts:
         - "traefik.${SECRET_DOMAIN}"
