@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: br0-charts
         namespace: flux-system
-      version: '0.2.10'
+      version: '0.2.11'
   values:
     replicaCount: 1
     ingress:
@@ -70,6 +70,8 @@ spec:
         apiKey: "${SECRET_BOT_TOKEN}"
         webhookurl: bsdm.br0.space
     postgresql:
+      image:
+        debug: false
       postgresqlUsername: kmptnz
       # This just needs to be set. It will use a second entry in existingSecret for postgresql-postgres-password
       postgresqlPassword: kmptnz
