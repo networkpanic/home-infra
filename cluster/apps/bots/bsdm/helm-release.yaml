@@ -71,7 +71,7 @@ spec:
         webhookurl: bsdm.br0.space
     postgresql:
       image:
-        debug: false
+        debug: true
       postgresqlUsername: kmptnz
       # This just needs to be set. It will use a second entry in existingSecret for postgresql-postgres-password
       postgresqlPassword: kmptnz
@@ -79,7 +79,7 @@ spec:
       postgresqlDatabase: kmptnz
       persistence:
         storageClass: 'nfs-client'
-        enabled: false
+        enabled: true
         size: 15G
       metrics:
         enabled: false
