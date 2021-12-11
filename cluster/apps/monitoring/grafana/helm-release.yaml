@@ -24,8 +24,6 @@ spec:
       GF_PANELS_DISABLE_SANITIZE_HTML: true
       GF_LOG_FILTERS: rendering:debug
     adminPassword: "${SECRET_GRAFANA_PASSWORD}"
-    serviceAccount: 
-      autoMount: true
     initChownData:
       enabled: false
     grafana.ini:
@@ -69,21 +67,25 @@ spec:
     datasources:
       datasources.yaml:
         apiVersion: 1
+        # list of datasources that should be deleted from the database
+        deleteDatasources:
+          - name: Loki
+            orgId: 1
         datasources:
-        - name: Prometheus
-          type: prometheus
-          url: http://prometheus-operated:9090
-          access: proxy
-          isDefault: true
-#        - name: Loki
-#          type: loki
-#          access: proxy
-#          url: http://loki:3100
-        - name: GitHub
-          type: grafana-github-datasource
-          uid: github
-          secureJsonData:
-            accessToken: ${SECRET_GITHUB_TOKEN}
+          - name: Prometheus
+            type: prometheus
+            access: proxy
+            url: http://thanos-query:9090/
+            isDefault: true
+          - name: Loki
+            type: loki
+            access: proxy
+            url: http://loki:3100
+          - name: GitHub
+            type: grafana-github-datasource
+            uid: github
+            secureJsonData:
+              accessToken: ${SECRET_GITHUB_TOKEN}
     dashboards:
       default:
         flux-cluster:
@@ -149,11 +151,8 @@ spec:
       annotations: 
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
         external-dns/is-public: "true"
+    serviceAccount:
+      create: true
+      autoMount: true
     persistence:
-      enabled: true
-      storageClassName: "nfs-client"
-      size: 15Gi
-      accessModes:
-      - ReadWriteOnce
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: "grafana"
+      enabled: false
