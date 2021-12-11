@@ -77,7 +77,7 @@ spec:
       postgresqlDatabase: kmptnz
       persistence:
         storageClass: 'nfs-client'
-        enabled: true
+        enabled: false
         size: 15G
       metrics:
         enabled: false
