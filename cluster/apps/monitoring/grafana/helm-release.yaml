@@ -24,7 +24,7 @@ spec:
       GF_PANELS_DISABLE_SANITIZE_HTML: true
       GF_LOG_FILTERS: rendering:debug
     envFromSecret: grafana-env
-    adminPassword: "${GRAFANA_PASSWORD}"
+    adminPassword: "${SECRET_GRAFANA_PASSWORD}"
     serviceAccount: 
       autoMount: true
     initChownData:
@@ -45,8 +45,8 @@ spec:
          token_url: https://github.com/login/oauth/access_token
          api_url: https://api.github.com/user      
          allowed_organizations: "${GRAFANA_OAUTH_ORGANISATIONS}"
-         client_id: "${GRAFANA_OAUTH_ID}"
-         client_secret: "${GRAFANA_OAUTH_SECRET}"
+         client_id: "${SECRET_GRAFANA_OAUTH_ID}"
+         client_secret: "${SECRET_GRAFANA_OAUTH_SECRET}"
       analytics:
         check_for_updates: false
       log:
@@ -84,7 +84,7 @@ spec:
           type: grafana-github-datasource
           uid: github
           secureJsonData:
-            accessToken: $GITHUB_TOKEN
+            accessToken: ${SECRET_GITHUB_TOKEN}
     dashboards:
       default:
         flux-cluster:
