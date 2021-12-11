@@ -5,7 +5,6 @@ metadata:
   name: webhook-receiver
   namespace: flux-system
   annotations: 
-    kubernetes.io/ingress.class: "traefik"
     external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
     external-dns/is-public: "true"
 spec:
