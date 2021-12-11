@@ -1,0 +1,92 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: br0bot
+  namespace: bots
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://br0-space.github.io/helm-charts/
+      chart: br0bot
+      sourceRef:
+        kind: HelmRepository
+        name: br0-charts
+        namespace: flux-system
+      version: '0.2.9'
+  values:
+    replicaCount: 1
+    ingress:
+      enabled: true
+      annotations: 
+        kubernetes.io/ingress.class: "nginx"
+      hosts:
+        - host: bsdm.br0.space
+      tls:
+        - secretName: br0-space-tls
+          hosts:
+            - bsdm.br0.space
+    resources:
+      limits:
+        cpu: 300m
+        memory: 128Mi
+      requests:
+        cpu: 300m
+        memory: 128Mi
+    
+    autoscaling:
+      enabled: false
+      minReplicas: 1
+      maxReplicas: 2
+      targetCPUUtilizationPercentage: 80
+      # targetMemoryUtilizationPercentage: 80
+    nodeSelector:
+      kubernetes.io/arch: amd64    
+    bot:
+      buzzwords:
+        buzzwordsMatcher:
+          - trigger: "huan"
+            reply: "Und wieder wurde einer zum Huan ernannt, *Huan* ist jetzt auf *%d*"
+          - trigger: "tzn"
+            reply: "Schon wieder ist etwas am Arsch: *Tzn* ist jetzt auf *%d*"
+          - trigger: "(bier|saufen|besoffen)"
+            reply: "Scho wieder am saufem, Bier ist jetzt auf *%d*"
+          - trigger: "420"
+            reply: "Nice! *420* ist jetzt auf *%d*"
+          - trigger: "(weggesynct|weggesynced)"
+            reply: "`rm -rf /` Weggesynct ist jetzt auf *%d*"
+          - trigger: "sync"
+            reply: "Der Sync ist stark in diesem! Sync ist damit auf *%d*"
+          - trigger: "obegfoin"
+            reply: "Immer ist irgendwas kaputt! Obegfoin ist jetzt auf *%d*"
+          - trigger: "lel"
+            reply: "Und schon wieder wurde extrem laut gelacht! Lel ist jetzt auf *%d*"
+          - trigger: "behindert"
+            reply: "Und schon wieder war einer behindert! Behindert ist jetzt auf *%d*"
+      telegram:
+        apiKey: "${SECRET_BOT_TOKEN}"
+        webhookurl: bsdm.br0.space
+    postgresql:
+      postgresqlUsername: kmptnz
+      # This just needs to be set. It will use a second entry in existingSecret for postgresql-postgres-password
+      postgresqlPassword: kmptnz
+      install: true
+      postgresqlDatabase: kmptnz
+      persistence:
+        storageClass: 'nfs-client'
+        enabled: true
+        size: 15G
+      metrics:
+        enabled: true
+        # resources: {}
+        service:
+          type: ClusterIP
+          annotations:
+            prometheus.io/scrape: 'true'
+            prometheus.io/port: '9187'
+        serviceMonitor:
+          enabled: true
+          additionalLabels: {}
+      nodeSelector:
+        kubernetes.io/arch: amd64
