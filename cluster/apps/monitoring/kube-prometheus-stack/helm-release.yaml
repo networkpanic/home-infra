@@ -68,7 +68,7 @@ spec:
       ingress:
         enabled: false
         pathType: Prefix
-        ingressClassName: "internal"
+        ingressClassName: "traefik"
 #        annotations:
         hosts:
         - "prometheus.${SECRET_DOMAIN}"
