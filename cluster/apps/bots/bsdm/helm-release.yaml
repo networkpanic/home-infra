@@ -80,7 +80,7 @@ spec:
         enabled: true
         size: 15G
       metrics:
-        enabled: true
+        enabled: false
         # resources: {}
         service:
           type: ClusterIP
