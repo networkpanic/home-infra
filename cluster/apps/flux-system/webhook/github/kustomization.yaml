@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - ingress.yaml
 - receiver.yaml
-- secret.enc.yaml
+- secret.sops.yaml
