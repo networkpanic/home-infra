@@ -85,7 +85,7 @@ spec:
         enabled: true
         size: 15G
       metrics:
-        enabled: false
+        enabled: true
         # resources: {}
         service:
           type: ClusterIP
