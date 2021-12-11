@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
   - cloudflare-ddns
   - external-dns
-  - traefik-external
-  - traefik-internal
+#  - traefik-external
+#  - traefik-internal
