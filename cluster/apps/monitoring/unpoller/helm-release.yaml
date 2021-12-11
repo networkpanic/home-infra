@@ -17,11 +17,12 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    envFromSecret: unpoller-env
     env:
       TZ: UTC
-      UP_UNIFI_DEFAULT_URL: ${SECRET_UNIFI_HOST}
-      UP_UNIFI_DEFAULT_USER: ${SECRET_UNIFI_USER}
-      UP_UNIFI_DEFAULT_PASS: ${SECRET_UNIFI_PASSWORD}
+      UP_UNIFI_DEFAULT_URL: ${UNIFI_HOST}
+      UP_UNIFI_DEFAULT_USER: ${UNIFI_USER}
+      UP_UNIFI_DEFAULT_PASS: ${UNIFI_PASSWORD}
       UP_UNIFI_DEFAULT_SAVE_SITES: true
       UP_UNIFI_DEFAULT_SAVE_DPI: true
       UP_PROMETHEUS_DISABLE: false
