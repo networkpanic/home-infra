@@ -4,4 +4,3 @@ resources:
   - cloudflare-ddns
   - external-dns
   - traefik-external
-  - traefik-internal
