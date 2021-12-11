@@ -12,7 +12,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     external-dns.alpha.kubernetes.io/target: "int.${SECRET_DOMAIN}"
 spec:
-  ingressClassName: "traefik"
+  ingressClassName: "traefik-internal"
   tls:
     - hosts:
         - "traefik-int.${SECRET_DOMAIN}"
