@@ -4,4 +4,4 @@ resources:
   - cloudflare-ddns
   - wildcard-certificate
   - external-dns
-  - traefik
+  - ingress-nginx
