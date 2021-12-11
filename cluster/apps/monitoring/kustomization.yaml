@@ -4,4 +4,4 @@ resources:
 - grafana
 - kube-prometheus-stack
 #- loki
-- unpoller
+- unifi-poller
