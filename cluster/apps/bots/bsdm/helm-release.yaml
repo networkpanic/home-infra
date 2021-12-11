@@ -90,5 +90,3 @@ spec:
         serviceMonitor:
           enabled: true
           additionalLabels: {}
-      nodeSelector:
-        kubernetes.io/arch: amd64
