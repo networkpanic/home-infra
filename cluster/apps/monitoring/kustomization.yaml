@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
 - grafana
 - kube-prometheus-stack
-#- loki
 - unifi-poller
+#- loki
