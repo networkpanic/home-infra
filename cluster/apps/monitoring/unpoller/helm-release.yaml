@@ -1,0 +1,39 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: unpoller
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: unifi-poller
+      version: 9.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    env:
+      TZ: UTC
+      UP_UNIFI_DEFAULT_URL: ${SECRET_UNIFI_HOST}
+      UP_UNIFI_DEFAULT_USER: ${SECRET_UNIFI_USER}
+      UP_UNIFI_DEFAULT_PASS: ${SECRET_UNIFI_PASSWORD}
+      UP_UNIFI_DEFAULT_SAVE_SITES: true
+      UP_UNIFI_DEFAULT_SAVE_DPI: true
+      UP_PROMETHEUS_DISABLE: false
+      UP_INFLUXDB_DISABLE: true
+    
+    service:
+      main:
+        ports:
+          http:
+            port: 9130
+    
+    prometheus:
+      serviceMonitor:
+        enabled: true
+        interval: 1m

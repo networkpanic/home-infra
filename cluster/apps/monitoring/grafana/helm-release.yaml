@@ -1,0 +1,159 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://grafana.github.io/helm-charts
+      chart: grafana
+      version: 6.16.5
+      sourceRef:
+        kind: HelmRepository
+        name: grafana-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    deploymentStrategy:
+      type: Recreate
+    env:
+      GF_EXPLORE_ENABLED: true
+      GF_PANELS_DISABLE_SANITIZE_HTML: true
+      GF_LOG_FILTERS: rendering:debug
+    envFromSecret: grafana-env
+    adminPassword: "${GRAFANA_PASSWORD}"
+    serviceAccount: 
+      autoMount: true
+    grafana.ini:
+      server:
+        root_url: "https://grafana.${SECRET_DOMAIN}"
+      paths:
+        data: /var/lib/grafana/data
+        logs: /var/log/grafana
+        plugins: /var/lib/grafana/plugins
+        provisioning: /etc/grafana/provisioning
+      auth.github:
+         enabled: true
+         allow_sign_up: true
+         scopes: user:email,read:org
+         auth_url: https://github.com/login/oauth/authorize
+         token_url: https://github.com/login/oauth/access_token
+         api_url: https://api.github.com/user      
+         allowed_organizations: "${GRAFANA_OAUTH_ORGANISATIONS}"
+         client_id: "${GRAFANA_OAUTH_ID}"
+         client_secret: "${GRAFANA_OAUTH_SECRET}"
+      analytics:
+        check_for_updates: false
+      log:
+        mode: console
+      grafana_net:
+        url: https://grafana.net
+      auth.basic:
+        disable_login_form: false
+    dashboardProviders:
+      dashboardproviders.yaml:
+        apiVersion: 1
+        providers:
+        - name: 'default'
+          orgId: 1
+          folder: ''
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/default
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+        - name: Prometheus
+          type: prometheus
+          url: http://prometheus-operated:9090
+          access: proxy
+          isDefault: true
+#        - name: Loki
+#          type: loki
+#          access: proxy
+#          url: http://loki:3100
+        - name: GitHub
+          type: grafana-github-datasource
+          uid: github
+          secureJsonData:
+            accessToken: $GITHUB_TOKEN
+    dashboards:
+      default:
+        flux-cluster:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
+          datasource: Prometheus
+        flux-control-plane:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
+          datasource: Prometheus
+        nginx-dashboard:
+          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
+          datasource: Prometheus
+        postgresql:
+          gnetId: 9628  
+          revision: 7
+          datasource: Prometheus
+        metallb:
+          gnetId: 14127
+          datasource: Prometheus
+        github:
+          gnetId: 14461
+          datasource: GitHub
+        unificlients:
+          gnetId: 11315
+          datasource: Prometheus
+          revision: 8
+        unificontroller:
+          gnetId: 11313
+          revision: 8
+          datasource: Prometheus
+        unifiap:
+          gnetId: 11314
+          datasource: Prometheus
+          revision: 9
+        unifi-dpi:
+          gnetId: 11310
+          datasource: Prometheus
+          revision: 4
+    sidecar:
+      dashboards:
+        enabled: true
+        searchNamespace: ALL
+      datasources:
+        enabled: true
+        searchNamespace: ALL
+    plugins:
+    - grafana-clock-panel
+    - grafana-github-datasource
+    - grafana-piechart-panel
+    - grafana-worldmap-panel
+    - natel-discrete-panel
+    - pr0ps-trackmap-panel
+    - vonage-status-panel
+    serviceMonitor:
+      enabled: true
+    ingress:
+      enabled: true
+      ingressClassName: "traefik"
+      hosts:
+      - "grafana.${SECRET_DOMAIN}"
+      tls:
+      - hosts:
+        - "grafana.${SECRET_DOMAIN}"
+      annotations: 
+        kubernetes.io/ingress.class: "traefik"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        external-dns/is-public: "true"
+    persistence:
+      enabled: true
+      storageClassName: "nfs-client"
+      size: 15Gi
+      accessModes:
+      - ReadWriteOnce
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "grafana"
