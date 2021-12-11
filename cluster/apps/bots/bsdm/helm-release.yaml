@@ -29,6 +29,9 @@ spec:
         - secretName: br0-space-tls
           hosts:
             - bsdm.br0.space
+      annotations: 
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        external-dns/is-public: "true"
     resources:
       limits:
         cpu: 300m
