@@ -34,13 +34,11 @@ spec:
     extraArgs:
       - --cloudflare-proxied
       - --annotation-filter=external-dns/is-public in (true)
-      - --zone-id-filter=38a57b5c775e025d3b9099eb04600f9c
-
     policy: sync
     sources:
       - ingress
     txtPrefix: "k8s."
-    txtOwnerId: "default"
+    txtOwnerId: ""
     domainFilters:
       - "${SECRET_DOMAIN}"
     resources:
