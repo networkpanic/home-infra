@@ -31,13 +31,11 @@ spec:
       main:
         ports:
           http:
+            enabled: false
+          metrics:
+            enabled: true
+            protocol: TCP
             port: 9130
-    
-    prometheus:
-      serviceMonitor:
-        enabled: true
-        interval: 1m
-
     metrics:
       # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
       # @default -- See values.yaml
