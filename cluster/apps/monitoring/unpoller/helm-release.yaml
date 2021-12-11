@@ -17,12 +17,11 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    envFromSecret: unpoller-env
     env:
       TZ: UTC
-      UP_UNIFI_DEFAULT_URL: ${UNIFI_HOST}
-      UP_UNIFI_DEFAULT_USER: ${UNIFI_USER}
-      UP_UNIFI_DEFAULT_PASS: ${UNIFI_PASSWORD}
+      UP_UNIFI_DEFAULT_URL: ${SECRET_UNIFI_HOST}
+      UP_UNIFI_DEFAULT_USER: ${SECRET_UNIFI_USER}
+      UP_UNIFI_DEFAULT_PASS: ${SECRET_UNIFI_PASSWORD}
       UP_UNIFI_DEFAULT_SAVE_SITES: true
       UP_UNIFI_DEFAULT_SAVE_DPI: true
       UP_PROMETHEUS_DISABLE: false
@@ -38,3 +37,27 @@ spec:
       serviceMonitor:
         enabled: true
         interval: 1m
+
+    metrics:
+      # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
+      # @default -- See values.yaml
+      enabled: true
+      serviceMonitor:
+        interval: 1m
+        scrapeTimeout: 30s
+        labels: {}
+      prometheusRule:
+        enabled: false
+        labels: {}
+        # -- Configure additionial rules for the chart under this key.
+        # @default -- See prometheusrules.yaml
+        rules: []
+          # - alert: UnifiPollerAbsent
+          #   annotations:
+          #     description: Unifi Poller has disappeared from Prometheus service discovery.
+          #     summary: Unifi Poller is down.
+          #   expr: |
+          #     absent(up{job=~".*unifi-poller.*"} == 1)
+          #   for: 5m
+          #   labels:
+          #     severity: critical
