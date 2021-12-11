@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: br0-charts
         namespace: flux-system
-      version: '0.2.9'
+      version: '0.2.10'
   values:
     replicaCount: 1
     ingress:
