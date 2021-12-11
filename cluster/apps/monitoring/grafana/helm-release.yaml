@@ -27,6 +27,8 @@ spec:
     adminPassword: "${GRAFANA_PASSWORD}"
     serviceAccount: 
       autoMount: true
+    initChownData:
+      enabled: false
     grafana.ini:
       server:
         root_url: "https://grafana.${SECRET_DOMAIN}"
