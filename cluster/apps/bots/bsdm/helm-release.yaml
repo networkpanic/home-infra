@@ -8,7 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://br0-space.github.io/helm-charts/
+      # renovate: registryUrl=https://br0-space.github.io/helm-charts
       chart: br0bot
       sourceRef:
         kind: HelmRepository
