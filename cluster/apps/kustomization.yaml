@@ -4,6 +4,7 @@ resources:
   - bots
   - flux-system
   - kube-system
+  - media
   - monitoring
   - networking
   - system-upgrade
