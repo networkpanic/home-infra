@@ -29,7 +29,10 @@ spec:
       publishService:
         enabled: true
       ingressClassResource:
-        default: true
+        name: nginx
+        enabled: true
+        default: false
+        controllerValue: "k8s.io/ingress-nginx"
       config:
         custom-http-errors: 401,403,404,500,501,502,503
         forwarded-for-header: "CF-Connecting-IP"
