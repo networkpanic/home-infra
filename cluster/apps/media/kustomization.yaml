@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
 - _pvc
 # - plex
-#- sabnzbd
+- sabnzbd
