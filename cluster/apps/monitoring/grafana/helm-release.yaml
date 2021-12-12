@@ -94,9 +94,6 @@ spec:
         flux-control-plane:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
           datasource: Prometheus
-        nginx-dashboard:
-          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
-          datasource: Prometheus
         postgresql:
           gnetId: 9628  
           revision: 7
@@ -162,4 +159,3 @@ spec:
       - ReadWriteOnce
     podAnnotations:
       configmap.reloader.stakater.com/reload: "grafana"
-
