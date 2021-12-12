@@ -155,4 +155,11 @@ spec:
       create: true
       autoMount: true
     persistence:
-      enabled: false
+      enabled: true
+      storageClassName: "nfs-client"
+      size: 15Gi
+      accessModes:
+      - ReadWriteOnce
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "grafana"
+
