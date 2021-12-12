@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - bots.yaml
   - cert-manager.yaml
+  - home.yaml
   - media.yaml
   - metallb-system.yaml
   - monitoring.yaml
