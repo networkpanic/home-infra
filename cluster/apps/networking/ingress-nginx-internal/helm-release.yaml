@@ -28,7 +28,16 @@ spec:
         externalTrafficPolicy: Local
       publishService:
         enabled: true
-      ingressClass: internal
+      ingressClassResource:
+        name: internal
+        enabled: true
+        default: false
+        controllerValue: "k8s.io/ingress-nginx-internal"
+    
+        # Parameters is a link to a custom resource containing additional
+        # configuration for the controller. This is optional if the controller
+        # does not require extra parameters.
+        parameters: {}
       config:
         custom-http-errors: 401,403,404,500,501,502,503
         forwarded-for-header: "CF-Connecting-IP"
@@ -58,11 +67,11 @@ spec:
                   - key: app.kubernetes.io/name
                     operator: In
                     values:
-                      - ingress-nginx
+                      - ingress-nginx-internal
                   - key: app.kubernetes.io/instance
                     operator: In
                     values:
-                      - ingress-nginx
+                      - ingress-nginx-internal
                   - key: app.kubernetes.io/component
                     operator: In
                     values:
