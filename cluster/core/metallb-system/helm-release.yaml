@@ -22,3 +22,13 @@ spec:
           protocol: layer2
           addresses:
             - "${METALLB_LB_RANGE}"
+    prometheus:
+      # Prometheus Operator PodMonitors
+      podMonitor:
+    
+        # enable support for Prometheus Operator
+        enabled: true
+      prometheusRule:
+    
+        # enable alertmanager alerts
+        enabled: true
