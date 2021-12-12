@@ -17,6 +17,13 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+      # -- image repository
+      repository: ghcr.io/k8s-at-home/sabnzbd
+      # -- image tag
+      tag: v3.4.2
+      # -- image pull policy
+      pullPolicy: IfNotPresent
     env:
       TZ: "Europe/Berlin"
     ingress:
