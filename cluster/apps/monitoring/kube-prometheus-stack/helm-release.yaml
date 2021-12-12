@@ -112,7 +112,7 @@ spec:
           scrape_interval: 60s
           metrics_path: /api/prometheus
           # Long-Lived Access Token
-          bearer_token: ${SECRET_HASS_TOKEN}
+          bearer_token: "${SECRET_HASS_TOKEN}"
       
           scheme: http
           static_configs:
