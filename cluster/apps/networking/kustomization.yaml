@@ -5,4 +5,4 @@ resources:
   - wildcard-certificate
   - external-dns
   - ingress-nginx
-#  - ingress-nginx-internal
+  - ingress-nginx-internal
