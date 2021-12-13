@@ -18,7 +18,7 @@ spec:
   values:
     envFrom:
       secretRef:
-        name: br0testbot-token
+        BOT_TOKEN: br0testbot-token
     image:
       repository: ghcr.io/br0-space/bot
       tag: latest
