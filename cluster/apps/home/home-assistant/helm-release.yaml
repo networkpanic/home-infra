@@ -70,6 +70,10 @@ spec:
       persistence:
         enabled: true
         StorageClass: "nfs-client"
+      image:
+        repository: bitnami/postgresql
+        tag: 14
+        pullPolicy: IfNotPresent
     resources:
       requests:
         cpu: 100m
