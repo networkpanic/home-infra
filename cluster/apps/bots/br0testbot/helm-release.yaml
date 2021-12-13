@@ -21,7 +21,7 @@ spec:
         name: br0testbot-token
     image:
       repository: ghcr.io/br0-space/bot
-      tag: latest
+      tag: main
       imagePullPolicy: always
     replicaCount: 1
     ingress:
