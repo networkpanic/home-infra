@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: br0-charts
         namespace: flux-system
-      version: '0.2.12'
+      version: '0.2.16'
   values:
     replicaCount: 1
     ingress:
@@ -74,7 +74,6 @@ spec:
           - trigger: "vapoctl"
             reply: "🥦 schon wieder raucht sich einer dicht, schon *%d* mal"   
       telegram:
-        apiKey: "${SECRET_BOT_TOKEN}"
         webhookurl: bsdm.br0.space
     postgresql:
       image:
