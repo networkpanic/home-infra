@@ -17,6 +17,10 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    image:
+    repository: homeassistant/home-assistant
+    tag: 2021.12.1
+    pullPolicy: IfNotPresent
     env:
       TZ: "Europe/Berlin"
     envFrom:
