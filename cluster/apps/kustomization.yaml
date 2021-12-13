@@ -4,6 +4,7 @@ resources:
   - bots
   - default
   - flux-system
+  - home
   - kube-system
   - media
   - monitoring
