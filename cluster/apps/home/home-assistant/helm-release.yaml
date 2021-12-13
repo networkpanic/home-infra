@@ -60,15 +60,11 @@ spec:
         existingClaim: home-assistant-config-v1
     podAnnotations:
       secret.reloader.stakater.com/reload: "home-assistant"
-    addons:
-      postgresql:
+    postgresql:
+      enabled: true
+      persistence:
         enabled: true
-        postgresqlUsername: home-assistant
-        postgresqlPassword: home-assistant-pass
-        postgresqlDatabase: home-assistant
-        persistence:
-          enabled: true
-          StorageClass: "nfs-client"
+        StorageClass: "nfs-client"
     resources:
       requests:
         cpu: 100m
