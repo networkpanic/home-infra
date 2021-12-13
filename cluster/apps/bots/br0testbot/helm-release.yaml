@@ -14,8 +14,11 @@ spec:
         kind: HelmRepository
         name: br0-charts
         namespace: flux-system
-      version: '0.2.12'
+      version: '0.2.14'
   values:
+    envFrom:
+      secretRef:
+        name: br0testbot-token
     image:
       repository: ghcr.io/br0-space/bot
       tag: latest
@@ -77,7 +80,7 @@ spec:
           - trigger: "vapoctl"
             reply: "🥦 schon wieder raucht sich einer dicht, schon *%d* mal"   
       telegram:
-        apiKey: "${SECRET_BOT_TOKEN}"
+        token: ${BOT_TOKEN}
         webhookurl: br0testbot.br0.space
     postgresql:
       image:
