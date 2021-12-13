@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: br0-charts
         namespace: flux-system
-      version: '0.2.16'
+      version: '0.2.17'
   values:
     image:
       repository: ghcr.io/br0-space/bot
