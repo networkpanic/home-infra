@@ -5,7 +5,7 @@ metadata:
     name: home-assistant
     namespace: home
 stringData:
-    HASS_POSTGRESQL_CONNECTION_STRING: ENC[AES256_GCM,data:D8mWPcs2z4HCamklyX+6hSInhS02jXQcDV7wMlRIBf8HIN3KyWDG9wGTTWddDHObsxrI2EPAiFo9+7PVE5IAc4ciw0TgGspxGlr9GfGsH3jmbUk9KJDrgyoB,iv:y+HZ4oIzX3PtHYcHYdt836ERP+j4Sb8jkX7QHgOrjCI=,tag:7U1ZvFYcQmLoqJwPmhLVCA==,type:str]
+    HASS_POSTGRESQL_CONNECTION_STRING: ENC[AES256_GCM,data:xcQV82NzZJN10DD0exmH0uooLoPAbZAg4Nc1gTx2FJTKZvre11+Oht56UK8a2P51LTEB09bpHrMzZUMagYEPb21jkgbve+YgtubSeYgzk4alUKGQHam/vA==,iv:cRSB16ipa/ZeXSqetnmeF/PUpSdgONJ5B5DppoI7Bro=,tag:eQQTQIdhAVO/1bzp8dG0hg==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -21,8 +21,8 @@ sops:
             ZmQvZU9VQ2poZy9NQldyaGlkYWcvdEkK9APXbHAACunT2KXpQ5BOnxVRC3iKU28+
             dTorR5aTTmMeE8r9Mkw2tvrhN7tFJzOfAzSibSTVQs5f8gE92T04eA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2021-12-13T22:57:21Z"
-    mac: ENC[AES256_GCM,data:rd3MIldoHdw64Y37RIf+HurvS9oR070I6D/cmu4Q3aK4I1oKN45aTmbf7zMqXF6irR8AzblIwyBHzWNC2JRCYXGoNgXO4DlehpEqdUc+tz3kKgvY4d9bOTjf44IIDycuEROQmoc5gcvegGOWs5Z7DndM/4qkRqQt5NxomqeYLsI=,iv:/tVbAl1d4ALswEmD462rN7MBYhV5rm3081R39mWGP/g=,tag:k6hWg0D1Yg8zIKDD+ML9OA==,type:str]
+    lastmodified: "2021-12-13T22:59:52Z"
+    mac: ENC[AES256_GCM,data:UDCsjR3WoUaME2N7kiZYT9V4MrW1LszP3KQYUSB+D/7Oipf1g2LPPcbIpI7/naigKsyYWG6aQ9cxCv1Tv0LGcJhd8gpIMbenrJcwMe+o2Kn+Lr0Mu001T2u1/myDzyC36Wol/z8xsyE1neI+vIOyNCBpNE6bojLbsP4N0SXFAL0=,iv:fLrOSvH674+pq3+GA7BL0Xdmxj3JkV650gdCiQG8JwQ=,tag:X731RxvQmDvJ0D04Y86aPA==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.7.1
