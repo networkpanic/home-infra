@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: br0-charts
         namespace: flux-system
-      version: '0.2.14'
+      version: '0.2.15'
   values:
     envFrom:
       secretRef:
