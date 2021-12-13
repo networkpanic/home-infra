@@ -16,9 +16,6 @@ spec:
         namespace: flux-system
       version: '0.2.16'
   values:
-    envFrom:
-      secretRef:
-        name: br0testbot-token
     image:
       repository: ghcr.io/br0-space/bot
       tag: main
@@ -81,6 +78,7 @@ spec:
           - trigger: "vapoctl"
             reply: "🥦 schon wieder raucht sich einer dicht, schon *%d* mal"
       telegram:
+        apiKey: ${SECRET_BR0TESTBOT_TOKEN}
         webhookurl: br0testbot.br0.space
     postgresql:
       image:

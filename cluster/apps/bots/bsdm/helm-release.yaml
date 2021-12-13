@@ -16,9 +16,6 @@ spec:
         namespace: flux-system
       version: '0.2.16'
   values:
-    envFrom:
-      secretRef:
-        name: bsdmbot-token
     replicaCount: 1
     ingress:
       enabled: true
@@ -77,6 +74,7 @@ spec:
           - trigger: "vapoctl"
             reply: "🥦 schon wieder raucht sich einer dicht, schon *%d* mal"   
       telegram:
+        apiKey: ${SECRET_BOT_TOKEN}
         webhookurl: bsdm.br0.space
     postgresql:
       image:
