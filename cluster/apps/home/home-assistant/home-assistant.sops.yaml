@@ -1,0 +1,28 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+metadata:
+    name: home-assistant
+    namespace: home
+stringData:
+    HASS_POSTGRESQL_CONNECTION_STRING: ENC[AES256_GCM,data:0VajBdGVNLo4AxBNdDrp2J4jVcyNDGsnEFYWqaxeondP/bdfca9lhHyDtuuV0gKyT1sRL+Su6QxyvptnYWqb+H5kR4DeRJo=,iv:DCfAFG5+4PVIFwiuAsbxlNECAV/k2uepGvGgUeWII8U=,tag:9MnOkel8HqrUxF46Ru1dvw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1lgy9jptcf2zaewy5u8svcmvhzd7njgz0tr3hy6uh2el0sekx2ysqhzucr3
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBLWmVZZGplek5zRnYzRkJw
+            VGZMQUI0K0VJeVZIbjJlUyttb1h6eVdsdHc0CnlNTXJmL1lFQmg5c1huRGVvSXRx
+            VWxIaWZIcUZ4YzF5SmxMRzVUcUVmMncKLS0tIDFqWjNtK1oxM2lqdlVEQk1Iam04
+            ZmQvZU9VQ2poZy9NQldyaGlkYWcvdEkK9APXbHAACunT2KXpQ5BOnxVRC3iKU28+
+            dTorR5aTTmMeE8r9Mkw2tvrhN7tFJzOfAzSibSTVQs5f8gE92T04eA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2021-12-13T22:25:08Z"
+    mac: ENC[AES256_GCM,data:pHiJbfzxiJm8UqS11GSC1DhjSHqUCXVNP+Q9WSdOlBNiehDZkY1Yrqm3h2ZQoYVWE8ds/FaM++7KvAJ2SbT8hUCBCMnLdHuPwChsFFdw6qeGLakFgma0AggU06a0fQYXPdj/kEDOCaScX/xSDWQ3JTcNXJEerjG1TKVAllVbqbI=,iv:VOGd3tXiGRqtERRQHh10sBVsm1KulL3+uJ/sWpQG0Kc=,tag:EnFTDAvSl4705hEgbv9rdA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
