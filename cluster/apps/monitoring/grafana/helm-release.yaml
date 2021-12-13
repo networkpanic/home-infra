@@ -17,9 +17,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    image:
-      repository: grafana/grafana
-      tag: 8.3.2
     deploymentStrategy:
       type: Recreate
     env:
@@ -70,20 +67,12 @@ spec:
     datasources:
       datasources.yaml:
         apiVersion: 1
-        # list of datasources that should be deleted from the database
-        deleteDatasources:
-          - name: Loki
-            orgId: 1
         datasources:
           - name: Prometheus
             type: prometheus
             url: http://prometheus-operated:9090
             access: proxy
             isDefault: true
-          - name: Loki
-            type: loki
-            access: proxy
-            url: http://loki:3100
           - name: GitHub
             type: grafana-github-datasource
             uid: github
