@@ -78,7 +78,7 @@ spec:
           - trigger: "kartoffel"
             reply: "Kartoffel? 🤜🤛👊 Pommes! Schon *%d* Kilo zugenommen"
           - trigger: "vapoctl"
-            reply: "🥦 schon wieder raucht sich einer dicht, schon *%d* mal"   
+            reply: "🥦 schon wieder raucht sich einer dicht, schon *%d* mal"
       telegram:
         webhookurl: br0testbot.br0.space
     postgresql:
