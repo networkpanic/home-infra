@@ -143,6 +143,8 @@ spec:
       enabled: true
       endpoints:
       - 192.168.2.6
+    kubeEtcd:
+      enabled: false
     prometheus:
       ingress:
         enabled: true
