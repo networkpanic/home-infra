@@ -70,8 +70,8 @@ spec:
         datasources:
           - name: Prometheus
             type: prometheus
-            url: http://prometheus-operated:9090
             access: proxy
+            url: http://thanos-query:9090/
             isDefault: true
           - name: GitHub
             type: grafana-github-datasource
