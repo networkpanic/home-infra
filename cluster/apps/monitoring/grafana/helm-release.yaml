@@ -78,6 +78,12 @@ spec:
             uid: github
             secureJsonData:
               accessToken: ${SECRET_GITHUB_TOKEN}
+          - name: Alertmanager
+            type: alertmanager
+            url: http://alertmanager-operated:9093/
+            access: proxy
+            jsonData:
+              implementation: 'prometheus'
     dashboards:
       default:
         flux-cluster:
