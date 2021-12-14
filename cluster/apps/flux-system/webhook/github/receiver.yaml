@@ -12,15 +12,14 @@ spec:
   secretRef:
     name: github-webhook-token
   resources:
-    - apiVersion: source.toolkit.fluxcd.io/v1beta1
-      kind: GitRepository
+    - kind: GitRepository
       name: flux-system
-    - apiVersion: source.toolkit.fluxcd.io/v1beta1
-      kind: Kustomization
+    - kind: Kustomization
       name: apps
-    - apiVersion: source.toolkit.fluxcd.io/v1beta1
-      kind: Kustomization
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
       name: core
-    - apiVersion: source.toolkit.fluxcd.io/v1beta1
-      kind: Kustomization
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+    - kind: Kustomization
       name: crds
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
