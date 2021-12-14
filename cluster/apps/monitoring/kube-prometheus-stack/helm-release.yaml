@@ -64,7 +64,7 @@ spec:
               severity: "warning"
             equal: ["alertname", "namespace"]
       ingress:
-        enabled: false
+        enabled: true
         pathType: Prefix
         ingressClassName: "internal"
         hosts:
