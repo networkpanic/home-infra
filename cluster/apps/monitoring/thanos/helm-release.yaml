@@ -47,6 +47,10 @@ spec:
       enabled: true
       persistence:
         enabled: false
+      retentionResolutionRaw: 1h
+      retentionResolution5m: 1h
+      retentionResolution1h: 2h
+      consistencyDelay: 30m
     storegateway:
       enabled: true
       persistence:
