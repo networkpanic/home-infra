@@ -73,6 +73,7 @@ spec:
             access: proxy
             url: http://thanos-query:9090/
             isDefault: true
+            manageAlerts: true
           - name: GitHub
             type: grafana-github-datasource
             uid: github
@@ -153,6 +154,8 @@ spec:
         external-dns/is-public: "true"
         hajimari.io/enable: "true"
         hajimari.io/icon: "grafana"
+    imageRenderer:
+      enabled: true
     serviceAccount:
       create: true
       autoMount: true
