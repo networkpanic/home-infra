@@ -67,6 +67,10 @@ spec:
     datasources:
       datasources.yaml:
         apiVersion: 1
+        # list of datasources that should be deleted from the database
+        deleteDatasources:
+          - name: Loki
+            orgId: 1
         datasources:
           - name: Prometheus
             type: prometheus
@@ -85,6 +89,10 @@ spec:
             access: proxy
             jsonData:
               implementation: 'prometheus'
+          - name: Loki
+            type: loki
+            access: proxy
+            url: http://loki:3100
     dashboards:
       default:
         flux-cluster:

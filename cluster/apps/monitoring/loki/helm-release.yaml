@@ -9,50 +9,76 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://grafana.github.io/helm-charts
-      chart: loki-stack
-      version: 2.5.0
+      chart: loki
+      version: 2.8.4
       sourceRef:
         kind: HelmRepository
         name: grafana-charts
         namespace: flux-system
       interval: 5m
   values:
-    loki:
-      config:
-        table_manager:
-          retention_deletes_enabled: true
-          retention_period: 336h
-        limits_config:
-          reject_old_samples: true
-          reject_old_samples_max_age: 48h
-      persistence:
-        enabled: true
-        storageClassName: "nfs-client"
-        size: 100Gi
-      serviceMonitor:
-        enabled: true
-    promtail:
-      serviceMonitor:
-        enabled: false
-      extraScrapeConfigs:
-      - job_name: syslog
-        syslog:
-          listen_address: 0.0.0.0:1514
-          idle_timeout: 60s
-          label_structured_data: true
-          labels:
-            job: "syslog"
-        relabel_configs:
-        - source_labels: ['__syslog_connection_ip_address']
-          target_label: 'ip_address'
-        - source_labels: ['__syslog_message_severity']
-          target_label: 'severity'
-        - source_labels: ['__syslog_message_facility']
-          target_label: 'facility'
-        - source_labels: ['__syslog_message_hostname']
-          target_label: 'host'
-      syslogService:
-        enabled: true
-        type: LoadBalancer
-        port: 1514
-        loadBalancerIP: "${LB_LOKI_IP}"
+    image:
+      repository: ghcr.io/k8s-at-home/loki
+    ingress:
+      enabled: true
+      ingressClassName: "internal"
+      hosts:
+        - host: "loki.${SECRET_PUBLIC_DOMAIN}"
+          paths:
+            - /
+      tls:
+        - hosts:
+            - "loki.${SECRET_PUBLIC_DOMAIN}"
+      annotations: 
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+        external-dns.alpha.kubernetes.io/target: "int.${SECRET_DOMAIN}"
+        external-dns/is-public: "true"
+    serviceMonitor:
+      enabled: true
+    config:
+      limits_config:
+        enforce_metric_name: false
+        reject_old_samples: true
+        reject_old_samples_max_age: 168h
+        ingestion_rate_mb: 8
+        ingestion_burst_size_mb: 12
+      storage_config:
+        aws:
+          bucketnames: loki
+          endpoint: "${SECRET_MINIO_ENDPOINT}"
+          access_key_id: "${SECRET_MINIO_ACCESS_KEY}"
+          secret_access_key: "${SECRET_MINIO_SECRET_KEY}"
+          s3forcepathstyle: true
+          insecure: true
+        boltdb_shipper:
+          active_index_directory: /data/loki/index
+          cache_location: /data/loki/index_cache
+          resync_interval: 5s
+          shared_store: s3
+      ruler:
+        storage:
+          type: local
+          local:
+            directory: /rules
+        rule_path: /tmp/scratch
+        alertmanager_url: http://prometheus-alertmanager:9093
+        ring:
+          kvstore:
+            store: inmemory
+        enable_api: true
+    alerting_groups:
+      #
+      # SMART Failures
+      #
+      - name: smart-failure
+        rules:
+          - alert: SmartFailures
+            expr: |
+              sum by (hostname) (count_over_time({hostname=~".+"} |~ "(?i).*smartd.*(error|fail).*"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              # TODO: Figure out how to use hostname in summary
+              summary: "SMART has reported failures"
