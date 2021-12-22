@@ -21,7 +21,6 @@ spec:
       repository: ghcr.io/k8s-at-home/loki
     ingress:
       enabled: true
-      ingressClassName: "internal"
       hosts:
         - host: "loki.${SECRET_PUBLIC_DOMAIN}"
           paths:
@@ -30,6 +29,7 @@ spec:
         - hosts:
             - "loki.${SECRET_PUBLIC_DOMAIN}"
       annotations: 
+        kubernetes.io/ingress.class: "internal"
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
         external-dns.alpha.kubernetes.io/target: "int.${SECRET_DOMAIN}"
         external-dns/is-public: "true"
