@@ -22,12 +22,12 @@ spec:
     ingress:
       enabled: true
       hosts:
-        - host: "loki.${SECRET_PUBLIC_DOMAIN}"
+        - host: "loki.${SECRET_DOMAIN}"
           paths:
             - /
       tls:
         - hosts:
-            - "loki.${SECRET_PUBLIC_DOMAIN}"
+            - "loki.${SECRET_DOMAIN}"
       annotations: 
         kubernetes.io/ingress.class: "internal"
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
