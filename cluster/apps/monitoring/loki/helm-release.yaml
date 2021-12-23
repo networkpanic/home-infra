@@ -57,6 +57,7 @@ spec:
           shared_store: s3
       ruler:
         enable_api: true
+        enable_alertmanager_v2: true
         storage:
           type: local
           local:
