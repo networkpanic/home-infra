@@ -63,4 +63,4 @@ spec:
       serviceMonitor:
         enabled: true
       prometheusRule:
-        enabled: false
+        enabled: true

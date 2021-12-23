@@ -19,7 +19,7 @@ spec:
     image:
       repository: ghcr.io/br0-space/bot
       tag: main
-      imagePullPolicy: always
+      imagePullPolicy: Always
     replicaCount: 1
     ingress:
       enabled: true
