@@ -56,18 +56,13 @@ spec:
           resync_interval: 5s
           shared_store: s3
       ruler:
-        extraVolumes:
-          - name: fake
-            emptyDir: {}
-        extraVolumeMounts:
-          - name: fake
-            mountPath: /rules/fake
         storage:
           type: local
           local:
             directory: /rules
         rule_path: /tmp/scratch
         alertmanager_url: http://prometheus-alertmanager:9093
+        enable_alertmanager_v2: true
         ring:
           kvstore:
             store: inmemory
