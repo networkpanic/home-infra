@@ -81,7 +81,7 @@ spec:
               accessToken: ${SECRET_GITHUB_TOKEN}
           - name: Alertmanager
             type: alertmanager
-            url: http://alertmanager-operated:9093/
+            url: http://prometheus-alertmanager:9093
             access: proxy
             jsonData:
               implementation: 'prometheus'
