@@ -108,12 +108,12 @@ spec:
       forceDeployDashboards: true
     kubelet:
       enabled: true
-      serviceMonitor:
-        metricRelabelings:
-          - action: replace
-            sourceLabels:
-              - node
-            targetLabel: instance
+#      serviceMonitor:
+#        metricRelabelings:
+#          - action: replace
+#            sourceLabels:
+#              - node
+#            targetLabel: instance
     kubeApiServer:
       enabled: true
     kubeControllerManager:
@@ -176,13 +176,6 @@ spec:
         retention: 1h
         enableAdminAPI: true
         walCompression: true
-        storageSpec:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: "nfs-client"
-              resources:
-                requests:
-                  storage: 50Gi
         thanos:
 #          image: quay.io/thanos/thanos:v0.24.0
 #          version: v0.22.0
