@@ -89,21 +89,20 @@ spec:
                   storage: 5Gi
     prometheusOperator:
       createCustomResource: false
-    nodeExporter:
+    prometheus-node-exporter:
+      fullnameOverride: node-exporter
       prometheus:
         monitor:
           enabled: true
           relabelings:
-          - action: replace
-            regex: (.*)
-            replacement: $1
-            sourceLabels:
-            - __meta_kubernetes_pod_node_name
-            targetLabel: kubernetes_node
+            - action: replace
+              regex: (.*)
+              replacement: $1
+              sourceLabels:
+                - __meta_kubernetes_pod_node_name
+              targetLabel: kubernetes_node
     kube-state-metrics:
       fullnameOverride: kube-state-metrics
-    prometheus-node-exporter:
-      fullnameOverride: node-exporter
     grafana:
       enabled: false
       forceDeployDashboards: true
@@ -111,10 +110,10 @@ spec:
       enabled: true
       serviceMonitor:
         metricRelabelings:
-        - action: replace
-          sourceLabels:
-          - node
-          targetLabel: instance
+          - action: replace
+            sourceLabels:
+              - node
+            targetLabel: instance
     kubeApiServer:
       enabled: true
     kubeControllerManager:
