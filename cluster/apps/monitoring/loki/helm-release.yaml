@@ -36,6 +36,8 @@ spec:
     serviceMonitor:
       enabled: true
     config:
+      server:
+        http_listen_port: 3100
       limits_config:
         enforce_metric_name: false
         reject_old_samples: true
