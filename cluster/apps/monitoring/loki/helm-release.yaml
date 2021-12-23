@@ -36,13 +36,6 @@ spec:
         external-dns/is-public: "true"
     serviceMonitor:
       enabled: true
-
-    service:
-      type: ClusterIP
-      port: 3100
-      annotations: {}
-      labels: {}
-      targetPort: http
     config:
       server:
         http_listen_port: 3100
