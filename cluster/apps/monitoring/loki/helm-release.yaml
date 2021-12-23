@@ -61,7 +61,7 @@ spec:
         storage:
           type: local
           local:
-            directory: /rules
+            directory: /tmp/rules
         rule_path: /tmp/scratch
         alertmanager_url: http://prometheus-alertmanager:9093
         ring:
@@ -72,7 +72,7 @@ spec:
         emptyDir: {}
     extraVolumeMounts:
       - name: fake
-        mountPath: /rules/fake
+        mountPath: /tmp/rules/fake
     alerting_groups:
       #
       # SMART Failures
