@@ -198,4 +198,8 @@ spec:
           scheme: http
           static_configs:
             - targets: ['192.168.2.7:8123']
-      
+        - job_name: "vpn-gate"
+          metrics_path: /metrics
+          scheme: http
+          static_configs:
+            - targets: ['192.168.2.251:9100']
