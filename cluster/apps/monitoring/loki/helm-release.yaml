@@ -56,6 +56,12 @@ spec:
           resync_interval: 5s
           shared_store: s3
       ruler:
+        extraVolumes:
+          - name: fake
+            emptyDir: {}
+        extraVolumeMounts:
+          - name: fake
+            mountPath: /rules/fake
         storage:
           type: local
           local:
