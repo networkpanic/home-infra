@@ -71,7 +71,7 @@ spec:
         emptyDir: {}
     extraVolumeMounts:
       - name: fake
-        mountPath: /tmp/loki/rules/fake
+        mountPath: /rules/fake
     alerting_groups:
       #
       # SMART Failures
