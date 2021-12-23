@@ -25,9 +25,7 @@ spec:
       hosts:
         - host: "loki.${SECRET_DOMAIN}"
           paths:
-            - backend:
-                serviceName: loki
-                servicePort: 3100
+            - /
       tls:
         - hosts:
             - "loki.${SECRET_DOMAIN}"
@@ -38,6 +36,11 @@ spec:
         external-dns/is-public: "true"
     serviceMonitor:
       enabled: true
+
+    service:
+      type: ClusterIP
+      port: 3100
+      targetPort: loki
     config:
       server:
         http_listen_port: 3100
