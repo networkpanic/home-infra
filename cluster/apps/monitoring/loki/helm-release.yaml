@@ -25,7 +25,9 @@ spec:
       hosts:
         - host: "loki.${SECRET_DOMAIN}"
           paths:
-            - /
+            - backend:
+                serviceName: loki
+                servicePort: 3100
       tls:
         - hosts:
             - "loki.${SECRET_DOMAIN}"
