@@ -62,11 +62,16 @@ spec:
             directory: /rules
         rule_path: /tmp/scratch
         alertmanager_url: http://alertmanager-operated:9093
-        enable_alertmanager_v2: true
         ring:
           kvstore:
             store: inmemory
         enable_api: true
+    extraVolumes:
+      - name: fake
+        emptyDir: {}
+    extraVolumeMounts:
+      - name: fake
+        mountPath: /tmp/loki/rules/fake
     alerting_groups:
       #
       # SMART Failures
