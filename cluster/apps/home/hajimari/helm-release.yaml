@@ -25,9 +25,10 @@ spec:
       namespaceSelector:
         matchNames:
           - default
-          - networking
-          - monitoring
+          - home
           - media
+          - monitoring
+          - networking
       name: "you"
       customApps:
         - name: Some External Cluster Service
