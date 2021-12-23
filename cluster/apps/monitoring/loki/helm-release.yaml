@@ -21,7 +21,6 @@ spec:
 #      repository: ghcr.io/k8s-at-home/loki
     ingress:
       enabled: true
-
       hosts:
         - host: "loki.${SECRET_DOMAIN}"
           paths:
@@ -36,14 +35,7 @@ spec:
         external-dns/is-public: "true"
     serviceMonitor:
       enabled: true
-
-    service:
-      type: ClusterIP
-      port: 3100
-      targetPort: loki
     config:
-      server:
-        http_listen_port: 3100
       limits_config:
         enforce_metric_name: false
         reject_old_samples: true
