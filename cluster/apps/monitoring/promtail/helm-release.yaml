@@ -44,20 +44,14 @@ spec:
                 target_label: 'unit'
               - source_labels: ['__journal__hostname']
                 target_label: 'hostname'
-    syslogService:
-      enabled: true
-      type: LoadBalancer
-      port: 1514
-      externalIPs:
-        - "${SVC_SYSLOG_ADDR}"
-#   extraPorts:
-#     syslog:
-#       name: syslog
-#       containerPort: 1514
-#       service:
-#         type: LoadBalancer
-#         externalIPs:
-#           - "${SVC_SYSLOG_ADDR}"
+    extraPorts:
+      syslog:
+        name: syslog
+        containerPort: 1514
+        service:
+          type: LoadBalancer
+          externalIPs:
+            - "${SVC_SYSLOG_ADDR}"
     extraVolumes:
       - name: journal
         hostPath:
