@@ -162,6 +162,9 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "prometheus"
+      remote_read:
+        - url: "http://192.168.2.7:8086/api/v1/prom/read?db=health&u=homeassistant&p=homeassistant"
+
       thanosService:
         enabled: true
       thanosServiceMonitor:
