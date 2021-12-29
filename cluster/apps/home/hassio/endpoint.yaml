@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: hassio
+subsets:
+  - addresses:
+      - ip: 192.168.2.7
+    ports:
+      - name: http
+        port: 8132
+        protocol: TCP

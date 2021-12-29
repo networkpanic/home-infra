@@ -1,0 +1,26 @@
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hassio
+  annotations: 
+    external-dns.alpha.kubernetes.io/target: "int.${SECRET_DOMAIN}"
+    external-dns/is-public: "true"
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+spec:
+  ingressClassName: "internal"
+  rules:
+  - host: "hassio.${SECRET_DOMAIN}"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: hassio
+            port:
+              number: 8132
+  tls:
+  - hosts:
+    - "hassio.${SECRET_DOMAIN}"
