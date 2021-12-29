@@ -7,5 +7,5 @@ subsets:
       - ip: 192.168.2.7
     ports:
       - name: http
-        port: 8132
+        port: 8123
         protocol: TCP

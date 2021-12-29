@@ -20,7 +20,7 @@ spec:
           service:
             name: hassio
             port:
-              number: 8132
+              number: 8123
   tls:
   - hosts:
     - "hassio.${SECRET_DOMAIN}"
