@@ -6,6 +6,6 @@ subsets:
   - addresses:
       - ip: 192.168.2.7
     ports:
-      - name: http
+      - name: https
         port: 8123
         protocol: TCP
