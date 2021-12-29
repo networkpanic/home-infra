@@ -4,8 +4,8 @@ metadata:
   name: hassio
 spec:
   ports:
-    - name: https
+    - name: http
       protocol: TCP
       port: 8123
-      targetPort: https
+      targetPort: http
   type: ClusterIP
