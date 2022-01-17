@@ -1,0 +1,60 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: hass
+  namespace: proxies
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://kubernetes.github.io/ingress-nginx
+      chart: reverse-proxy
+      version: 2.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    generateTLS:
+      enabled: true
+
+    instances:
+    - name: hass
+      enabled: true
+      test: true
+      externalName: hass.br0.space
+      # -- IP address behind this reverse proxy
+      # Has no effect if externalName is set
+      ip: 192.168.1.1
+      # -- Port used by host behind this reverse proxy
+      # @default -- 80
+      port: 80
+      ingress:
+        # -- Provide additional annotations which may be required
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "int.${SECRET_DOMAIN}"
+          external-dns/is-public: "true"
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+
+        tls:
+        - hosts:
+          - hass.br0.space
+        hosts:
+        - host: hass.br0.space
+           # -- Path.  Helm template can be passed
+           # @default -- /
+          path: /
+    
+    ingressPort:
+      # -- Ingress port for non-TLS
+      http: 80
+      # -- Ingress port for TLS
+      tls: 443
+    
+    connectionTest:
+      waitretry: 2
+      readtimeout: 2
+      tries: 30
+    

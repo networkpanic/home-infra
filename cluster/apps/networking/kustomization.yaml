@@ -6,3 +6,4 @@ resources:
   - external-dns
   - ingress-nginx
   - ingress-nginx-internal
+  - proxy
