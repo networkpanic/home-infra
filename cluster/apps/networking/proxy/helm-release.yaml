@@ -24,7 +24,6 @@ spec:
     - name: hass
       enabled: true
       test: true
-      externalName: hass.br0.space
       # -- IP address behind this reverse proxy
       # Has no effect if externalName is set
       ip: 192.168.2.7
