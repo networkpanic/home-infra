@@ -27,10 +27,10 @@ spec:
       externalName: hass.br0.space
       # -- IP address behind this reverse proxy
       # Has no effect if externalName is set
-      ip: 192.168.1.1
+      ip: 192.168.2.7
       # -- Port used by host behind this reverse proxy
       # @default -- 80
-      port: 80
+      port: 8123
       ingress:
         # -- Provide additional annotations which may be required
         annotations:
