@@ -22,7 +22,7 @@ spec:
 
     instances:
     - name: hass
-      enabled: false
+      enabled: true
       test: false
       # -- IP address behind this reverse proxy
       # Has no effect if externalName is set
