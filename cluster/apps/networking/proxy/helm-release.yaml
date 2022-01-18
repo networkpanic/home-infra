@@ -22,7 +22,7 @@ spec:
 
     instances:
     - name: hass
-      enabled: true
+      enabled: false
       test: true
       ip: ${HOME_ASSISTANT_SERVER}
       port: 8123
