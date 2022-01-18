@@ -45,7 +45,7 @@ spec:
            # -- Path.  Helm template can be passed
            # @default -- /
           path: /
-        ingressClassName: "internal"    
+      ingressClassName: "internal"    
     ingressPort:
       # -- Ingress port for non-TLS
       http: 80
