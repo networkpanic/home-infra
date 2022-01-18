@@ -51,7 +51,7 @@ spec:
           namespaceSelector:
             any: true
         prometheusRule:
-          enabled: false
+          enabled: true
       extraArgs:
         default-ssl-certificate: "networking/${SECRET_DOMAIN/./-}-tls"
       affinity:
