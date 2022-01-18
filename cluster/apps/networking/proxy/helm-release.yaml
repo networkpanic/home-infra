@@ -38,6 +38,7 @@ spec:
         - host: hass.${SECRET_DOMAIN}
           path: /
         ingressClassName: "internal"
+      ingressClassName: "internal"
     ingressPort:
       http: 80
       tls: 443
