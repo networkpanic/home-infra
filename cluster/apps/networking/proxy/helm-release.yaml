@@ -22,7 +22,7 @@ spec:
 
     instances:
     - name: hass
-      enabled: true
+      enabled: false
       test: false
       # -- IP address behind this reverse proxy
       # Has no effect if externalName is set
@@ -45,7 +45,7 @@ spec:
            # -- Path.  Helm template can be passed
            # @default -- /
           path: /
-      ingressClassName: "nginx"    
+        ingressClassName: "nginx"    
     ingressPort:
       # -- Ingress port for non-TLS
       http: 80
