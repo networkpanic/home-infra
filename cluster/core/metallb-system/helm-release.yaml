@@ -22,11 +22,11 @@ spec:
           protocol: layer2
           addresses:
             - "${METALLB_LB_RANGE}"
-    prometheus:
-      podMonitor:
-        enabled: false
-      prometheusRule:
-        enabled: true
+#    prometheus:
+#      podMonitor:
+#        enabled: false
+#      prometheusRule:
+#        enabled: false
     speaker:
       tolerations:
         - effect: "NoExecute"
