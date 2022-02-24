@@ -24,7 +24,7 @@ spec:
             - "${METALLB_LB_RANGE}"
     prometheus:
       podMonitor:
-        enabled: disabled
+        enabled: false
       prometheusRule:
         enabled: true
     speaker:
