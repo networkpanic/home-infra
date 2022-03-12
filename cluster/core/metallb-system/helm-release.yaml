@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://metallb.github.io/metallb
       chart: metallb
-      version: 0.11.1
+      version: 0.12.1
       sourceRef:
         kind: HelmRepository
         name: metallb-charts
@@ -22,11 +22,11 @@ spec:
           protocol: layer2
           addresses:
             - "${METALLB_LB_RANGE}"
-#    prometheus:
-#      podMonitor:
-#        enabled: false
-#      prometheusRule:
-#        enabled: false
+    prometheus:
+      podMonitor:
+        enabled: false
+      prometheusRule:
+        enabled: false
     speaker:
       tolerations:
         - effect: "NoExecute"
