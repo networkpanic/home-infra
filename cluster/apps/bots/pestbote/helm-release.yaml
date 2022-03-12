@@ -36,13 +36,13 @@ spec:
       annotations: 
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
         external-dns/is-public: "true"
-    resources:
-      limits:
-        cpu: 300m
-        memory: 128Mi
-      requests:
-        cpu: 300m
-        memory: 128Mi
+#    resources:
+#      limits:
+#        cpu: 300m
+#        memory: 128Mi
+#      requests:
+#        cpu: 300m
+#        memory: 128Mi
     
     autoscaling:
       enabled: false
