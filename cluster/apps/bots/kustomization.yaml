@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
 - bsdm
 - br0testbot
-#- canna
+- canna
 - pestbote
