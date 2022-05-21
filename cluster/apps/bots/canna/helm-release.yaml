@@ -70,7 +70,9 @@ spec:
           - trigger: "kartoffel"
             reply: "Kartoffel? 🤜🤛👊 Pommes! Schon *%d* Kilo zugenommen"
           - trigger: "vapoctl"
-            reply: "🥦 schon wieder raucht sich einer dicht, schon *%d* mal"   
+            reply: "🥦 schon wieder raucht sich einer dicht, schon *%d* mal"
+          - trigger: "klick"
+            reply: "welcome to the Dynaverse 🥦, schon *%d* mal geklickt"
       telegram:
         apiKey: ${SECRET_CANNA_BOT_TOKEN}
         webhookurl: canna.br0.space
