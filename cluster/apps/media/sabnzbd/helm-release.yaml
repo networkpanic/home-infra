@@ -63,7 +63,7 @@ spec:
         enabled: true
         type: emptyDir
         mountPath: /downloads/tmp
-        existingClaim: sabnzbd-tmp
+#        existingClaim: sabnzbd-tmp
       downloads:
         enabled: true
         existingClaim: nfs-downloads-pvc
